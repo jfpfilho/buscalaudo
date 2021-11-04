@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ {
-
-
-    post_listarController
+    Paciente,
+   PacienteController
 
 };
 
@@ -15,16 +14,19 @@ use App\Http\Controllers\ {
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|test
+
+ Aqui é onde você pode registrar as rotas da web para seu aplicativo. Esses
+| as rotas são carregadas pelo RouteServiceProvider dentro de um grupo que
+| contém o grupo de middleware "web". Agora crie algo ótimo!
+| teste 
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.post_lista.login');
 });
 
+Route:: post('/paciente', [PacienteController::class, 'store'])-> name('paciente.store'); /*amrmazenar * envia para o banco */
 
-Route:: get('/post_listar', [post_listarController::class, 'index']); /* metodo index*/
+Route:: get('/post_listar', [PacienteController::class, 'index']); /* metodo index, aqui vou inserir a pagina principal*/
+
+Route:: get('/paciente/create', [PacienteController::class, 'create'])-> name('paciente.create'); /* envia para a tela de cadastro*/
