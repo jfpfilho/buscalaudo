@@ -60,7 +60,7 @@
                                                     @csrf
                                                         <div class="row">
                                                                 <div class="col-md-7">  NOME DO PACIENTE
-                                                                        <input class="form-control" type="text" name="nome_paciente" placeholder="3 - NOME DO PACIENTE">
+                                                                        <input class="form-control" type="text" value="{{old('nome_paciente')}}" name="nome_paciente" placeholder="3 - NOME DO PACIENTE">
                                                                 </div>
                                                                                     
                                                                                 <div class="col-md-2" >
@@ -88,7 +88,7 @@
                                                         <div class="row" > 
                                                         
                                                                 <div class="col-md-2" >N° CPF
-                                                                        <input class="form-control" type="text" name="cpf_paciente" placeholder="CPF">      
+                                                                        <input class="form-control" type="text"  value="{{old('cpf_paciente')}}" name="cpf_paciente" placeholder="CPF">      
                                                                 </div>
 
                                                                 <div class="col-md-2" >CART. NAC. DE SAÚDE (CNES)
@@ -96,7 +96,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-3" > DATA DE NASC.
-                                                                        <input class="form-control" type="date" name="dt_nasc_paciente" placeholder="DATA DE NASCIMENTO">      
+                                                                        <input class="form-control" type="date"  value="{{old('dt_nasc_paciente')}}" name="dt_nasc_paciente" placeholder="DATA DE NASCIMENTO">      
                                                                 </div>
 
                                                                 <div class="col-md-3" >RAÇA/COR
@@ -128,7 +128,7 @@
                                                     <div class="row" > 
                                                         
                                                         <div class="col-md-9" > NOME DO RESPONSÁVEL
-                                                            <input class="form-control" type="text" name="responsavel" placeholder="NOME DO RESPONSÁVEL">      
+                                                            <input class="form-control" type="text" name="responsavel"  value="{{old('responsavel')}}" placeholder="NOME DO RESPONSÁVEL">      
                                                             </div>
 
                                                         <div class="col-md-3" >TELEFONE DE CONTATO
@@ -141,7 +141,7 @@
                                                     <div class="row" > 
                                                         
                                                             <div class="col-md-12" > ENDEREÇO (RUA, Nº, BAIRRO)
-                                                                <input class="form-control" type="text" name="end" placeholder="ENDEREÇO (RUA, Nº, BAIRRO">      
+                                                                <input class="form-control" type="text" name="end"  value="{{old('end')}}" placeholder="ENDEREÇO (RUA, Nº, BAIRRO">      
                                                             </div>
                                                     </div>
 
@@ -151,19 +151,19 @@
                                                             <div class="row" > 
                                                                 
                                                                     <div class="col-md-6" > MUNICÍPIO DE RESIDÊNCIA
-                                                                        <input class="form-control" type="text" name="municipio" placeholder="MUNICÍPIO DE RESIDÊNCIA">      
+                                                                        <input class="form-control" type="text" name="municipio"  value="{{old('municipio')}}" placeholder="MUNICÍPIO DE RESIDÊNCIA">      
                                                                     </div>
 
                                                                     <div class="col-md-2" > CÓD. IBGE MUN
-                                                                        <input class="form-control" type="number" name="n_ibge_mun" placeholder="CÓD. IBGE MUNICÍPIO">      
+                                                                        <input class="form-control" type="number" name="n_ibge_mun"  value="{{old('n_ibge_mun')}}" placeholder="CÓD. IBGE MUNICÍPIO">      
                                                                     </div>
 
                                                                     <div class="col-md-1" > UF
-                                                                        <input class="form-control" type="text" name="uf" placeholder="UF">
+                                                                        <input class="form-control" type="text" name="uf"  value="{{old('uf')}}" placeholder="UF">
                                                                     </div>
 
                                                                     <div class="col-md-3" > CEP
-                                                                        <input class="form-control" type="text" name="cep" required maxlength="10" OnkeyPress="formatar('##.###-###', this)" placeholder="CEP">
+                                                                        <input class="form-control" type="text" name="cep"  value="{{old('cep')}}" required maxlength="10" OnkeyPress="formatar('##.###-###', this)" placeholder="CEP">
                                                                     </div>
                             
                                                             </div>

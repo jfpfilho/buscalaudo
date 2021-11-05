@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdatePaciente;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -14,11 +15,11 @@ class PacienteController extends Controller
 
     }
 
-    public function store(Request $request)  /* Request $request cria um objeto de request*/
+    public function store(StoreUpdatePaciente $request)  /* Request $request cria um objeto de request*/
 
     {
 
-        dd($request->nome_paciente);
+        dd($request->nome_prof);
 
     }
 }
