@@ -5,11 +5,12 @@
     <head> 
     <meta charset="utf-8"/>
         
-        <title> Pagina Inicial</title> <!-- Navbar parte de navegação completa de um site-->
+    <title> Pesquisa Paciente</title> <!-- Navbar parte de navegação completa de um site-->
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link href="style.css" rel="stylesheet" href="bootstrap.min.css"/>
-        <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
-        <script type="text/javascript" src="bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>  <!-- asset indica a pasta onde está o aquivo-->
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 
         
         <!--escript de fazer as mascaras -->
@@ -38,8 +39,7 @@
 
     </head> <!--  -->
     <body>
-         <?php include 'nav_superior.php'?>
-
+        
             <div style=" height: 70%;  margin-top: 15%;" class="container" >
 
 
@@ -58,8 +58,8 @@
                                                         </div>
                                                                 <br>
 
-                                                <form action="listar_paciente.php" method="POST">     
-
+                                                <form action="{{route('paciente')}}" method="GET">     
+                                                @csrf
                                                         <div class="row">
                                                                 <div class="col-md-6">  NOME DO PACIENTE
                                                                         <input class="form-control" type="text" name="nome" placeholder="3 - NOME DO PACIENTE">
@@ -99,7 +99,7 @@
                     </div>
 
         </div>    
-    <?php include 'nav_inferior.php'?>   
+   
             
     </body>
 </html>

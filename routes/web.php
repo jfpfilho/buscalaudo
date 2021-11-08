@@ -28,7 +28,7 @@ use App\Http\Controllers\ {
 Route::get('/', function () {
     return view('admin.post_lista.login');});
     
-Route:: get('/post_listar', [PacienteController::class, 'index']); /* metodo index, aqui vou inserir a pagina principal*/
+Route:: get('/pesquisa_paciente', [PacienteController::class, 'show'])-> name('paciente.show');/* metodo index, aqui vou inserir a pagina principal*/
 
 Route:: post('/paciente', [PacienteController::class, 'store'])-> name('paciente.store'); /*amrmazenar * envia para o banco */
 

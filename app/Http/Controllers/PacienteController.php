@@ -22,6 +22,22 @@ class PacienteController extends Controller
         dd($request->nome_prof);
 
     }
-}
+
+    public function show($id)
+    {
+        $paciente= Paciente::find($id);    /* procura pelo id no metodo find  / se a variável for diferente retorna a index*/
+        
+        if (!$paciente)   
+        {
+           
+            return redirect()->route('posts.index'); /* retorna para a index.*/
+        }
+
+        return view('admin.posts.show', compact('post'));
+    }
+    
+
+ }
+
 
 
