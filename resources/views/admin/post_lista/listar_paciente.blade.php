@@ -1,108 +1,100 @@
 
 <html>
 
-
-<head> 
-<meta charset="utf-8"/>
-    
-    <title> Pagina Inicial</title> <!-- Navbar parte de navegação completa de um site-->
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>  <!-- asset indica a pasta onde está o aquivo-->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-    <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-     <!--os arquivos acima estão dentro de aragon\www\buscalaudo\public -->
-
-    
-    <!--escript de fazer as mascaras -->
-
-    <script>
-        function formatar(mascara, documento){
-                var i = documento.value.length;
-                var saida = mascara.substring(0,1);
-                var texto = mascara.substring(i);
-
-                if (texto.substring(0,1) != saida){
-
-                        documento.value += texto.substring(0,1); 
-                }
-
-        }
-
-
-    </script>
-
-
-    <!--type="full" required maxlength="27" OnkeyPress="formatar('#|#|#|#|#|#|#|#|#|#|#|#|#|#', this)"  serve para configura o da maneira que quermos a mascara
-    -->
-   
-
-
-</head> <!--  -->
-<body>
-  
-
-        <div style=" height: 70%;  margin-top: 15%;" class="container" >
-
-
-                    <Div   class="row">
-
-                                    <div   class="container" class="col-sm-12">
-                            
-
-
-
-                                                    <div class="row"  > 
-                                                                
-                                                                <div  class="col-md-12" style="text-align: center; background-color: #2F4F4F; border-radius: 1%; color:white" >
-                                                                    <p>PESQUISAR CADASTRO DE PACIENTE</p>     
-                                                                </div>
-                                                    </div>
-                                                            <br>
-
-                                            <form action="listar_paciente.php" method="POST">     
-
-                                                    <div class="row">
-                                                            <div class="col-md-6">  NOME DO PACIENTE
-                                                                    <input class="form-control" type="text" name="nome" placeholder="3 - NOME DO PACIENTE">
-                                                            </div>
-
-                                                            <div class="col-md-3" >N° CPF
-                                                                    <input class="form-control" type="text" name="cpf" placeholder="CPF">      
-                                                            </div>
-                                                                                
-                                                                          
-                                                                        
-                                                            <div class="col-md-3" > Nº DO PRONTUÁRIO
-                                                                    <input class="form-control" type="text" name="n_prontuario" placeholder="Nº DO PRONTUÁRIO">
-                                                            </div>
-
-                                                    </div>  
-
-                                                    <br><br>      
-                                                    
-                                                    
-
-                                                        <input type="submit" value="PESQUISAR" class="btn btn-primary"/>
-                                                        <br><br>
-                                                            <div class="row"  > 
-                                                                
-                                                                <div  class="col-md-12" style="height: 4.5%; text-align: center; background-color: #2F4F4F; border-radius: 1%; color:white" >
-                                                                    <p></p>     
-                                                                </div>
-                                                            </div>
-
-                                            </form>  
-
-
-                                </div>
-
-                    
-                </div>
-
-    </div>    
- 
+    <head> 
+    <meta charset="utf-8"/>
         
-</body>
+        <title> Listar Paciente</title> <!-- Navbar parte de navegação completa de um site-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>  <!-- asset indica a pasta onde está o aquivo-->
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+
+
+    </head> <!--  -->
+
+    <body>
+    
+        <div style=" height: 60%;  margin-top: 8%;" class="container"  >
+
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>  <!--utilizado para destacar os títulos das colunas de uma tabela. ... A cada página de impressão o cabeçalho se repetirá.-->
+                                            
+                                                <tr><!--  define uma linha numa tabela. A tabela terá exactamente um número de linhas igual ao número de tags TR encontradas. -->
+                                                @foreach ($pacientes as $paciente)    
+                                                <th>Nome {{$paciente->nome_paciente}}</th>
+                                                    <th>N° CPF {{$paciente->cpf_paciente}}</th>
+                                                                                                        
+                                                </tr>
+                                        </thead>
+                                        <tfoot> <!-- para combinar conteúdo rodapé da tabela HTML. ... Quando incluídas várias páginas longas mesas são impressos,
+                                         os cabeçalhos e rodapés de tabelas pode ser impresso em cada página que contém os dados da tabela. -->
+                                            
+                                        </tfoot>
+                                        <tbody>
+                                        <?PHP 
+                                        include 'conexao.php';
+
+                                        $cpf_paciente = $_POST["cpf"];
+                                        $nome_paciente = $_POST["nome"];
+                                        $n_prontuario = $_POST["n_prontuario"];
+
+                                        $listar_paciente = mysqli_query($conexao, "SELECT * FROM `paciente` WHERE `cpf_paciente` 
+                                        LIKE '$cpf_paciente' OR `nome_paciente` LIKE '$nome_paciente' OR `n_prontuario` LIKE '$n_prontuario'");
+
+                                        $pesquisa = mysqli_fetch_assoc($listar_paciente);
+
+                                        
+                                                       
+                                        if (($pesquisa["cpf_paciente"] != $cpf_paciente)) 
+
+                                     
+
+                                         {
+                                            echo "<script> alert ('Paciente não possui cadastro, favor cadastrá-lo!') </script>";
+                                            echo "<script> location.href='cadastro_paciente.php'</script>";
+                                        }
+
+
+                                   
+                                        while ($pesquisa = mysqli_fetch_assoc($listar_paciente)  ){ ?>
+
+                                    pre
+                                        
+                                        
+                                            <tr>
+                                                <td><?PHP echo $pesquisa['nome_paciente']; ?></td>
+                                                <td><?PHP echo $pesquisa1['cpf_paciente']; ?></td>
+                                           
+
+                                  
+                                                
+                                                <td> <?PHP echo 
+                                                                "<form action='alterar_cliente1F.php' method='POST'>
+                                                                    <button name='id_cliente_alterar'value=".$pesquisa['cpf_paciente'].">VER  </button>
+                                                                </form> ";
+                                                                
+                                                                "<form action='alterar_cliente1F.php' method='POST'>
+                                                                <button name='id_cliente_alterar'value=".$pesquisa['cpf_paciente'].">EXCLUIR  </button>
+                                                                </form> ";
+                                                                echo "<form action='processa_excluir_cliente1B.php' method='POST'>
+                                                                <button name='id_cliente_excluir'value=".$pesquisa['cpf_paciente']." >Excluir </button>
+                                                                </form> ";
+                                                                
+                                                    ?>
+                                                        
+                                                </td>
+                                                
+                                            </tr>
+                                        <?PHP } ?>
+                                            
+                                        </tbody>
+            </table>
+
+        </div>    
+   
+    </body>
 </html>

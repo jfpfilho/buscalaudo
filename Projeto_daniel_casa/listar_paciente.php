@@ -25,6 +25,8 @@
                                             <tr>
                                                 <th>Nome</th>
                                                 <th>N° CPF</th>
+												<th>Nome da mãe</th>
+												<th>Telefone</th>
                                                 <th>N° Prontuário</th>
                                                 <th>Ações</th>
                                                 

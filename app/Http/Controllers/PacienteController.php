@@ -25,15 +25,18 @@ class PacienteController extends Controller
 
     public function show($id)
     {
-        $paciente= Paciente::find($id);    /* procura pelo id no metodo find  / se a variável for diferente retorna a index*/
+        $pacientes= Paciente::find($id);    /* procura pelo id no metodo find  / se a variável for diferente retorna a index*/
         
-        if (!$paciente)   
-        {
-           
-            return redirect()->route('posts.index'); /* retorna para a index.*/
-        }
-
-        return view('admin.posts.show', compact('post'));
+        if (!$pacientes)   
+        
+                {
+                echo "<script> alert ('Paciente não possui cadastro, favor cadastrá-lo!') </script>";
+                    return redirect()->route('paciente.show'); /**/
+                
+                }
+                           
+        return view('listar_paciente', compact('pacientes'));
+        
     }
     
 
