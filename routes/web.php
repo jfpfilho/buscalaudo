@@ -27,6 +27,10 @@ use App\Http\Controllers\ {
 
 Route::get('/', function () {
     return view('admin.post_lista.login');});
+
+
+
+/* PACIENTE*/
     
 Route:: get('/pesquisa_paciente', [PacienteController::class, 'show'])-> name('paciente.show');/* metodo index, aqui vou inserir a pagina principal*/
 
@@ -35,6 +39,10 @@ Route:: post('/paciente', [PacienteController::class, 'store'])-> name('paciente
 Route:: get('/paciente/create', [PacienteController::class, 'create'])-> name('paciente.create'); /* envia para a tela de cadastro*/
 
 Route:: put('/paciente', [PacienteController::class, 'update'])-> name('paciente.update'); /* envia para a tela de cadastro*/
+
+Route::any('/posts/search', [PacienteController::class, 'search'])->name('posts.search'); /* rota para fazer o filtro / any aceita todos os tipos de requisição */ 
+
+ /* PROFISSIONAL*/
 
 Route:: get('/profissional/create', [ProfissionalController::class, 'create'])-> name('profissional.create'); /* envia para a tela de cadastro*/
 

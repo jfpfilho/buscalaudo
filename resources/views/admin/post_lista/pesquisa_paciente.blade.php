@@ -72,7 +72,7 @@
                                                                               
                                                                             
                                                                 <div class="col-md-3" > NOME DA MÃE
-                                                                        <input class="form-control" type="text" name="n_prontuario" placeholder="NOME DA MÃE">
+                                                                        <input class="form-control" type="text" name="mae" placeholder="NOME DA MÃE">
                                                                 </div>
 
                                                         </div>  
